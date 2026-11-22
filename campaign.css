@@ -66,7 +66,20 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   }
   .ideas { --y: 1450; --h: 86; }
   .scene .art-text, .scene .art-text .accent { color: transparent; }
-  .masthead a, .hero .art-text, .election-info .art-text, .scene h2, .program-grid, .team-grid, .idea-action, .carousel-controls, .track, .clock, .election-status { position: absolute; }
+  .masthead a, .hero h1, .hero-action, .idea-action, .carousel-controls, .track, .clock, .election-status { position: absolute; }
+  .art-line {
+    position: absolute; z-index: 1;
+    left: calc(var(--x) * var(--unit)); top: calc(var(--y-text) * var(--unit));
+    width: calc(var(--w) * var(--unit)); height: calc(var(--h-text) * var(--unit));
+    overflow: clip; cursor: text; user-select: text;
+    font: 400 calc(var(--h-text) * 1.27 * var(--unit))/calc(var(--h-text) * var(--unit)) var(--head);
+  }
+  .art-fit { display: inline-block; white-space: nowrap; transform-origin: left center; transform: scaleX(var(--fit, 1)); }
+  .art-fit::selection { color: transparent; background-color: #296bde66; }
+  .brand .art-line, .masthead nav .art-line, .hero-action .art-line, .idea-action .art-line { cursor: inherit; }
+  .brand .art-line, .masthead nav .art-line, .reasons .art-line, .program .art-line, .election .art-line, .team h2 .art-line, .team h3 .art-line { text-transform: uppercase; }
+  .program-grid, .team-grid { display: contents; }
+  .after-countdown .election-info { display: none; }
   .brand { left: 4.4%; top: 24%; width: 22%; height: 69%; }
   .masthead nav a { top: 18%; height: 57%; }
   .nav-program { left: 74%; width: 11.7%; }
@@ -93,11 +106,7 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .hero h1 > span:last-child { --line-width: 460; --squeeze: .653; margin-top: calc(12 * var(--unit)); }
   .slogan-word { display: inline-block; transform: scaleX(var(--squeeze)); transform-origin: left center; }
   .slogan-word::selection { color: transparent; background-color: #296bde66; }
-  .candidate-name { top: 58%; left: 4.2%; }
-  .candidate-role { top: 70%; left: 4.2%; }
   .hero-action { left: 3.5%; top: 79.8%; width: 33.7%; height: 9.7%; }
-  .election-label { top: 21%; left: 6.9%; }
-  .election-date { top: 20%; left: 36%; }
   .clock {
     inset: 10% auto auto 61.3%; width: 33.25%; height: 49%;
     display: flex; align-items: center; justify-content: center;
@@ -116,7 +125,6 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   }
   .clock span { position: relative; }
   .election-status { inset: 10% 4.2% 14%; display: grid; place-items: center; background: var(--paper); color: var(--red); font: 800 3.7cqi/1 var(--text); border-radius: 13px; }
-  .reasons h2 { left: 3.4%; top: 13%; width: 78%; }
   .carousel-controls { top: 55.2%; left: 3.95%; right: 4%; height: 19%; display: flex; justify-content: space-between; pointer-events: none; }
   .arrow { width: 5.15%; height: 100%; pointer-events: auto; border-radius: 50%; }
   .track {
@@ -136,12 +144,7 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .reasons:has(.reason[open]) { margin-bottom: clamp(102px, 13cqi, 190px); }
   .reasons:has(.reason[open]) .track { height: calc(var(--card-height) + var(--expansion)); }
   .reason p { position: relative; padding: 1.6cqi 2.4cqi; color: var(--ink); font-size: clamp(.94rem, 1.55cqi, 1.25rem); }
-  .program h2 { top: 11%; left: 3.35%; }
-  .program-grid { inset: 36% 3.7% 9.5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5.1% 1.8%; }
-  .program-grid h3 { top: auto; padding: 1cqi 2cqi; font-weight: 600; }
-  .team h2 { top: calc(10 * var(--unit)); left: 3.35%; }
-  .team-grid { inset: calc(87 * var(--unit)) 5.37% auto; display: grid; gap: 4%; grid-template-columns: 1fr 1fr; }
-  .ideas h2 { left: 32%; top: 28%; }
+  .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); user-select: none; }
   .idea-action { left: 33%; top: 20%; width: 34%; height: 68%; }
 }
 @media (max-width: 760px) {
@@ -190,7 +193,7 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .team-grid p { color: var(--muted); margin-top: 9px; font-size: .85rem; }
   .team-grid article + article { border-left: 1px solid var(--line); padding-left: 12px; }
   .scene.ideas { display: grid; justify-content: center; padding: 18px 0 25px; border-top: 1px solid var(--line); }
-  .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); user-select: none; }
   .ideas .action { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } }

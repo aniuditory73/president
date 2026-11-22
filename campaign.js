@@ -68,3 +68,76 @@ if (googleFormUrl) {
     formStatus.showModal();
   });
 }
+
+
+// Match the selectable DOM text to the lettering in the desktop artwork.
+const desktopArtwork = matchMedia("(min-width: 761px)");
+const artworkLabels = Array.from(document.querySelectorAll(".art-fit"));
+
+function fitArtworkLabels() {
+  if (!desktopArtwork.matches) return;
+  const ratios = artworkLabels.map((label) => label.parentElement.clientWidth / Math.max(1, label.offsetWidth));
+  artworkLabels.forEach((label, index) => label.style.setProperty("--fit", ratios[index]));
+}
+
+new ResizeObserver(fitArtworkLabels).observe(document.querySelector(".frame"));
+desktopArtwork.addEventListener("change", fitArtworkLabels);
+fitArtworkLabels();
+if (document.fonts) document.fonts.ready.then(fitArtworkLabels);
+
+
+// A mouse click still opens a link. Dragging over its lettering selects the text.
+for (const link of document.querySelectorAll('a[draggable="false"]')) {
+  const label = link.querySelector(".art-fit");
+  const textNode = label.firstChild;
+  let drag;
+  let cancelClick = false;
+
+  function textOffset(event) {
+    const bounds = label.getBoundingClientRect();
+    if (event.clientX <= bounds.left) return 0;
+    if (event.clientX >= bounds.right) return textNode.length;
+    const centerY = label.parentElement.getBoundingClientRect().top + label.parentElement.clientHeight / 2;
+    const caret = document.caretPositionFromPoint?.(event.clientX, centerY);
+    if (caret?.offsetNode === textNode) return caret.offset;
+    const range = document.caretRangeFromPoint?.(event.clientX, centerY);
+    if (range?.startContainer === textNode) return range.startOffset;
+    return Math.round((event.clientX - bounds.left) / bounds.width * textNode.length);
+  }
+
+  link.addEventListener("pointerdown", (event) => {
+    cancelClick = false;
+    if (!desktopArtwork.matches || event.pointerType !== "mouse" || event.button !== 0 ||
+        event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || !label.contains(event.target)) return;
+    drag = { id: event.pointerId, x: event.clientX, offset: textOffset(event) };
+    event.preventDefault();
+    link.setPointerCapture(event.pointerId);
+  });
+
+  link.addEventListener("pointermove", (event) => {
+    if (!drag || drag.id !== event.pointerId || (!cancelClick && Math.abs(event.clientX - drag.x) < 4)) return;
+    cancelClick = true;
+    window.getSelection()?.setBaseAndExtent(textNode, drag.offset, textNode, textOffset(event));
+  });
+
+  link.addEventListener("lostpointercapture", () => { drag = undefined; });
+  link.addEventListener("click", (event) => {
+    if (!cancelClick || event.detail === 0) return;
+    cancelClick = false;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }, true);
+}
+
+for (const title of document.querySelectorAll(".reason summary")) {
+  let start;
+  title.addEventListener("pointerdown", (event) => {
+    start = event.pointerType === "mouse" ? [event.clientX, event.clientY] : undefined;
+  });
+  title.addEventListener("click", (event) => {
+    if (event.detail && start && Math.hypot(event.clientX - start[0], event.clientY - start[1]) > 4) {
+      event.preventDefault();
+    }
+    start = undefined;
+  });
+}
