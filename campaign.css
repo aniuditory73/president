@@ -1,12 +1,13 @@
 :root {
-  color-scheme: dark;
-  --art: url("campaign-art.png");
-  --ink: #e5e2e1;
-  --paper: #1a1c1e;
-  --silver: #d4d2d2;
-  --gold: #edbd6c;
-  --muted: #c7c4c2;
-  --line: #adaba9;
+  color-scheme: light;
+  --art: url("campaign-art-light.png");
+  --title-art: url("campaign-art-black-title.png");
+  --ink: #151413;
+  --paper: #eeeae1;
+  --button: #ce080d;
+  --red: #c80910;
+  --muted: #4c4741;
+  --line: #26231f;
   --text: "Segoe UI", Arial, sans-serif;
   --head: Impact, "Arial Narrow", "Segoe UI", sans-serif;
   font-family: var(--text);
@@ -14,15 +15,15 @@
 }
 * { box-sizing: border-box; }
 html { scrollbar-width: none; }
-body { margin: 0; color: var(--ink); background: #191b1d; }
+body { margin: 0; color: var(--ink); background: var(--paper); }
 [hidden] { display: none !important; }
 a { text-decoration: none; color: inherit; }
 button { font: inherit; color: inherit; }
 a:focus-visible, button:focus-visible, summary:focus-visible, .track:focus-visible {
-  outline: 2px solid var(--gold); outline-offset: 2px;
+  outline: 2px solid var(--red); outline-offset: 2px;
 }
 p, h1, h2, h3 { margin: 0; }
-.accent { color: var(--gold); }
+.accent { color: var(--red); }
 .frame { max-width: 1440px; margin: auto; container-type: inline-size; }
 .track { display: flex; align-items: flex-start; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; }
 .reason { min-width: 0; scroll-snap-align: start; }
@@ -32,12 +33,12 @@ p, h1, h2, h3 { margin: 0; }
 .arrow { cursor: pointer; border: 0; background: none; }
 .arrow:disabled { cursor: default; }
 .mobile-portrait { display: none; }
-dialog { color: var(--ink); background: #252729; border: 1px solid var(--line); border-radius: 12px; width: min(90%, 440px); padding: 24px; }
+dialog { color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; width: min(90%, 440px); padding: 24px; }
 dialog::backdrop { background: #121315c4; }
 dialog h2 { font-size: 1.5rem; }
 dialog p { margin: 14px 0 20px; }
 .action { display: inline-flex; justify-content: center; align-items: center; border: 0; cursor: pointer; }
-dialog .action { padding: 9px 17px; border-radius: 6px; color: #141414; background: var(--silver); }
+dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background: var(--button); }
 @media (min-width: 761px) {
   .scene {
     --unit: .09765625cqi;
@@ -45,85 +46,92 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #141414; backgrou
     block-size: calc(var(--h) * var(--unit));
     background: var(--art) 0 calc(var(--y) * var(--unit) * -1) / 100% auto no-repeat;
   }
-  .masthead { --y: 0; --h: 64; }
-  .hero { --y: 64; --h: 479; }
-  .election { --y: 543; --h: 107; }
-  .reasons { --y: 650; --h: 219; }
-  .program { --y: 869; --h: 305; }
-  .team { --y: 1174; --h: 171; }
-  .ideas { --y: 1345; --h: 191; }
+  .masthead { --y: 0; --h: 65; }
+  .hero { --y: 65; --h: 573; }
+  .election { --y: 638; --h: 116; }
+  .reasons { --y: 754; --h: 259; }
+  .program { --y: 1013; --h: 287; }
+  .team { --y: 1300; --h: 150; }
+  .ideas { --y: 1450; --h: 86; }
   .scene .art-text, .scene .art-text .accent { color: transparent; }
   .masthead a, .hero .art-text, .election-info .art-text, .scene h2, .program-grid, .team-grid, .idea-action, .carousel-controls, .track, .clock, .election-status { position: absolute; }
-  .brand { left: 3.6%; top: 20%; width: 7%; height: 70%; }
+  .brand { left: 4.4%; top: 24%; width: 22%; height: 69%; }
   .masthead nav a { top: 18%; height: 57%; }
-  .nav-program { left: 55.2%; width: 10.7%; }
-  .nav-team { left: 68%; width: 8.7%; }
-  .nav-ideas { left: 80.3%; width: 16.9%; }
+  .nav-program { left: 74%; width: 11.7%; }
+  .nav-team { left: 89.55%; width: 7.6%; }
   .hero .hero-copy { position: absolute; inset: 0; }
-  .hero h1 { top: 9%; left: 5.05%; width: 47%; height: 57%; }
-  .candidate-name { top: 67%; left: 5.1%; }
-  .candidate-role { top: 76%; left: 5.1%; }
-  .hero-action { left: 5.2%; top: 84.2%; width: 32.2%; height: 9.8%; }
-  .election-label { top: 17%; left: 17.7%; }
-  .election-date { top: 41%; left: 17.7%; }
+  .hero .hero-copy::before {
+    content: ""; position: absolute; pointer-events: none;
+    left: calc(35 * var(--unit)); top: calc(189 * var(--unit)); width: calc(470 * var(--unit)); height: calc(122 * var(--unit));
+    background: var(--title-art) calc(-35 * var(--unit)) calc(-254 * var(--unit)) / 100cqi auto no-repeat;
+    mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 99%, transparent),
+      linear-gradient(to bottom, transparent, #000 3%, #000 97%, transparent);
+    mask-composite: intersect;
+  }
+  .hero h1 { top: 12%; left: 4.2%; width: 45%; height: 43%; }
+  .candidate-name { top: 58%; left: 4.2%; }
+  .candidate-role { top: 70%; left: 4.2%; }
+  .hero-action { left: 3.5%; top: 79.8%; width: 33.7%; height: 9.7%; }
+  .election-label { top: 21%; left: 6.9%; }
+  .election-date { top: 20%; left: 36%; }
   .clock {
-    inset: 19% auto auto 55.4%; width: 29%; height: 47%;
+    inset: 10% auto auto 61.3%; width: 33.25%; height: 49%;
     display: flex; align-items: center; justify-content: center;
     background: transparent;
-    color: #d2d0d0;
-    font: 700 4.85cqi/.94 "Bahnschrift", "Cascadia Mono", Consolas, monospace;
-    font-stretch: condensed; letter-spacing: .105em; white-space: nowrap;
+    color: #111111;
+    font: 800 5.25cqi/.94 var(--head);
+    letter-spacing: .01em; white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
   .clock::before {
     content: ""; position: absolute; inset: -6px -7px;
-    background: radial-gradient(ellipse at 44% 7%, #2c2d30, transparent 78%), linear-gradient(180deg, #292b2d, #232527);
+    background: radial-gradient(ellipse at 50% 22%, #eeebe4, transparent 76%), linear-gradient(180deg,#eeeae3,#ebe7df);
     mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
       linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
     mask-composite: intersect;
   }
   .clock span { position: relative; }
-  .election-status { inset: 10% 4.2% 14%; display: grid; place-items: center; background: #26282b; color: var(--gold); font: 800 3.7cqi/1 var(--text); border-radius: 13px; }
-  .reasons h2 { left: 3.9%; top: 8%; width: 79%; }
-  .carousel-controls { top: 6%; right: 3.45%; width: 9%; height: 23%; display: flex; justify-content: space-between; }
-  .arrow { width: 42%; height: 100%; }
+  .election-status { inset: 10% 4.2% 14%; display: grid; place-items: center; background: var(--paper); color: var(--red); font: 800 3.7cqi/1 var(--text); border-radius: 13px; }
+  .reasons h2 { left: 3.4%; top: 13%; width: 78%; }
+  .carousel-controls { top: 55.2%; left: 3.95%; right: 4%; height: 19%; display: flex; justify-content: space-between; pointer-events: none; }
+  .arrow { width: 5.15%; height: 100%; pointer-events: auto; border-radius: 50%; }
   .track {
     --card-height: calc(123 * var(--unit));
     --expansion: clamp(102px, 13cqi, 190px);
-    top: calc(72 * var(--unit)); left: 3.7109375%; width: 92.578125%; height: var(--card-height);
-    gap: calc(17 * var(--unit)); position: absolute;
+    top: calc(105 * var(--unit)); left: 11.03515625%; width: 78.02734375%; height: var(--card-height);
+    gap: calc(23 * var(--unit)); position: absolute;
   }
-  .track.has-scrolled { background: #1a1c1e; }
-  .reason { flex: 0 0 calc((100% - 17 * var(--unit))/2); }
-  .reason summary { height: var(--card-height); border-radius: calc(11 * var(--unit)); }
+  .track.has-scrolled { background: var(--paper); }
+  .reason { flex: 0 0 calc((100% - 23 * var(--unit))/2); }
+  .reason summary { height: var(--card-height); border-radius: 0; }
   .reason:nth-child(1) summary, .reason:nth-child(2) summary {
     background-image: var(--art); background-repeat: no-repeat; background-size: 100cqi auto;
-    background-position: calc(var(--card-x) * var(--unit) * -1) calc(-722 * var(--unit));
+    background-position: calc(var(--card-x) * var(--unit) * -1) calc(-859 * var(--unit));
   }
-  .reason:nth-child(1) summary { --card-x: 38; }
-  .reason:nth-child(2) summary { --card-x: 521; }
+  .reason:nth-child(1) summary { --card-x: 113; }
+  .reason:nth-child(2) summary { --card-x: 524; }
   .track:not(.has-scrolled) .reason:nth-child(-n+2) summary { background-image: none; }
   .reason:nth-child(n+3) summary {
     display: flex; align-items: center; border: 1px solid var(--line); padding: 2.7cqi 3.4cqi;
-    color: #d6d3d1; font: 650 3.15cqi/1.08 var(--text);
-    background: radial-gradient(ellipse at 112% -18%, #77777844, transparent 66%), linear-gradient(115deg,#242629,#191b1d 72%);
+    color: var(--ink); font: 700 3.05cqi/1.08 var(--head); text-transform: uppercase;
+    background: var(--paper);
   }
-  .reason summary:hover { box-shadow: inset 0 0 0 1px #e6c084aa; }
+  .reason summary:hover { box-shadow: inset 0 0 0 1px #bb0a0e88; }
   .reasons:has(.reason[open]) { margin-bottom: clamp(102px, 13cqi, 190px); }
   .reasons:has(.reason[open]) .track { height: calc(var(--card-height) + var(--expansion)); }
   .reason p { position: relative; padding: 1.6cqi 2.4cqi; color: var(--ink); font-size: clamp(.94rem, 1.55cqi, 1.25rem); }
-  .program h2 { top: 5%; left: 3.9%; }
-  .program-grid { inset: 22.6% 3.7% 8.4%; display: grid; grid-template-columns: 1fr 1fr; gap: 5.1% 1.8%; }
+  .program h2 { top: 11%; left: 3.35%; }
+  .program-grid { inset: 36% 3.7% 9.5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5.1% 1.8%; }
   .program-grid h3 { top: auto; padding: 1cqi 2cqi; font-weight: 600; }
   .team h2 { top: 8.6%; left: 3.9%; }
-  .team-grid { inset: 42% 4.35% 15%; display: grid; gap: 4%; grid-template-columns: 1fr 1fr; }
-  .ideas h2 { left: 6%; top: 32%; }
-  .idea-action { left: 66%; top: 37%; width: 28.6%; height: 30%; }
+  .team-grid { inset: 43% 5.37% 11%; display: grid; gap: 4%; grid-template-columns: 1fr 1fr; }
+  .ideas h2 { left: 32%; top: 28%; }
+  .idea-action { left: 33%; top: 20%; width: 34%; height: 68%; }
 }
 @media (max-width: 760px) {
-  .frame { padding: 0 clamp(15px, 4.5vw, 31px); background: radial-gradient(ellipse at 62% 7%, #333538, transparent 65%); }
+  .frame { padding: 0 clamp(15px, 4.5vw, 31px); background: radial-gradient(ellipse at 20% 7%, #f8f5ee, transparent 65%); }
   .masthead { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .brand { font: 1.8rem/1 Georgia, serif; }
+  .brand { font: 700 clamp(.98rem, 4.4vw, 1.8rem)/1 var(--head); text-transform: uppercase; }
   .masthead nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px clamp(8px, 3vw, 20px); }
   .masthead nav a { font: 600 clamp(.66rem, 2.45vw, .92rem)/1.2 var(--text); text-transform: uppercase; }
   .hero { position: relative; display: grid; padding-top: 16px; }
@@ -132,17 +140,17 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #141414; backgrou
   .hero h1 span { display: block; }
   .candidate-name { font-size: 1.6rem; font-weight: 700; margin-top: 14px; }
   .candidate-role { color: var(--muted); margin: 3px 0 15px; font-size: .95rem; }
-  .action { padding: 12px 17px; border-radius: 6px; min-height: 44px; color: #151515; background: linear-gradient(116deg,#e5e3e3,#bcbaba); font-size: .93rem; font-weight: 650; text-align: center; }
+  .action { padding: 12px 17px; border-radius: 6px; min-height: 44px; color: #fff; background: var(--button); font-size: .93rem; font-weight: 650; text-align: center; }
   .mobile-portrait {
     display: block; margin: -7px 0 0; aspect-ratio: 1.45;
     background: var(--art) 100% 5% / 214% auto no-repeat;
     -webkit-mask-image: linear-gradient(transparent, black 10%, black 87%, transparent);
     mask-image: linear-gradient(transparent, black 10%, black 87%, transparent);
   }
-  .election { display: flex; align-items: center; justify-content: space-evenly; gap: 10px; min-height: 63px; border: 1px solid #838282; border-radius: 10px; background: #33353888; padding: 8px; }
+  .election { display: flex; align-items: center; justify-content: space-evenly; gap: 10px; min-height: 63px; border: 1px solid #838282; border-radius: 10px; background: #f7f3ec88; padding: 8px; }
   .election-info { text-transform: uppercase; }
   .election-label { font-size: .7rem; letter-spacing: .13em; }
-  .election-date, .election-status { color: var(--gold); font-weight: 750; }
+  .election-date, .election-status { color: var(--red); font-weight: 750; }
   .clock { border-left: 1px solid var(--line); padding-left: clamp(9px, 4vw, 24px); font: 700 clamp(1.05rem, 5vw, 2.15rem)/1 "Bahnschrift", Consolas, monospace; white-space: nowrap; }
   .after-countdown .election-info { display: none; }
   .scene:not(.masthead, .hero, .election) { padding: 21px 0; }
@@ -155,15 +163,16 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #141414; backgrou
   .track { gap: 12px; margin-top: 13px; }
   .reason { flex: 0 0 83%; }
   .reason summary, .program-grid article { border: 1px solid #939091; border-radius: 8px; min-height: 89px; padding: 15px; }
-  .reason summary { background: radial-gradient(ellipse at 106% 120%, #636365, transparent 63%), #222426; font-size: 1.15rem; font-weight: 650; }
+  .reason summary { background: #fffaf2; font-size: 1.15rem; font-weight: 650; }
   .reason p { padding: 12px 5px 0; font-size: .95rem; }
   .program, .team { border-top: 1px solid var(--line); }
   .program-grid, .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 15px; gap: 11px; }
-  .program-grid article { background: #24262970; }
+  .program-grid article { background: #fffaf288; }
   .scene h3 { font-size: clamp(.97rem, 4vw, 1.5rem); font-weight: 600; }
   .team-grid p { color: var(--muted); margin-top: 5px; font-size: .85rem; }
   .team-grid article + article { border-left: 1px solid var(--line); padding-left: 12px; }
-  .scene.ideas { display: grid; gap: 13px; padding: 16px; margin: 5px 0 20px; border: 1px solid #838282; border-radius: 10px; background: linear-gradient(124deg,#303234,#1a1c1e 73%); }
+  .scene.ideas { display: grid; justify-content: center; padding: 18px 0 25px; border-top: 1px solid var(--line); }
+  .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .ideas .action { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } }
