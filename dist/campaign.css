@@ -27,7 +27,7 @@ p, h1, h2, h3 { margin: 0; }
 .frame { max-width: 1440px; margin: auto; container-type: inline-size; }
 .track { display: flex; align-items: flex-start; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; }
 .reason { min-width: 0; scroll-snap-align: start; }
-.reason summary { display: block; cursor: pointer; }
+.reason summary { display: flex; flex-direction: column; justify-content: center; cursor: pointer; font-family: var(--head); font-weight: 400; text-transform: uppercase; }
 .reason summary::-webkit-details-marker { display: none; }
 .reason p { line-height: 1.55; }
 .arrow { cursor: pointer; border: 0; background: none; }
@@ -51,7 +51,19 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .election { --y: 638; --h: 116; }
   .reasons { --y: 754; --h: 259; }
   .program { --y: 1013; --h: 287; }
-  .team { --y: 1300; --h: 150; }
+  .team { --y: 1300; --h: 220; background: linear-gradient(110deg, #f0ece3, #ece8df); }
+  .team::before, .team::after {
+    content: ""; position: absolute; inset-inline: 0; pointer-events: none;
+    background-image: var(--art); background-repeat: no-repeat; background-size: 100cqi auto;
+  }
+  .team::before {
+    top: 0; height: calc(60 * var(--unit)); background-position: 0 calc(-1300 * var(--unit));
+    mask-image: linear-gradient(#000 92%, transparent);
+  }
+  .team::after {
+    top: calc(87 * var(--unit)); height: calc(84 * var(--unit)); background-position: 0 calc(-1359 * var(--unit));
+    mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+  }
   .ideas { --y: 1450; --h: 86; }
   .scene .art-text, .scene .art-text .accent { color: transparent; }
   .masthead a, .hero .art-text, .election-info .art-text, .scene h2, .program-grid, .team-grid, .idea-action, .carousel-controls, .track, .clock, .election-status { position: absolute; }
@@ -99,22 +111,14 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
     --card-height: calc(123 * var(--unit));
     --expansion: clamp(102px, 13cqi, 190px);
     top: calc(105 * var(--unit)); left: 11.03515625%; width: 78.02734375%; height: var(--card-height);
-    gap: calc(23 * var(--unit)); position: absolute;
+    gap: calc(23 * var(--unit)); position: absolute; background: var(--paper);
   }
-  .track.has-scrolled { background: var(--paper); }
   .reason { flex: 0 0 calc((100% - 23 * var(--unit))/2); }
-  .reason summary { height: var(--card-height); border-radius: 0; }
-  .reason:nth-child(1) summary, .reason:nth-child(2) summary {
-    background-image: var(--art); background-repeat: no-repeat; background-size: 100cqi auto;
-    background-position: calc(var(--card-x) * var(--unit) * -1) calc(-859 * var(--unit));
-  }
-  .reason:nth-child(1) summary { --card-x: 113; }
-  .reason:nth-child(2) summary { --card-x: 524; }
-  .track:not(.has-scrolled) .reason:nth-child(-n+2) summary { background-image: none; }
-  .reason:nth-child(n+3) summary {
-    display: flex; align-items: center; border: 1px solid var(--line); padding: 2.7cqi 3.4cqi;
-    color: var(--ink); font: 700 3.05cqi/1.08 var(--head); text-transform: uppercase;
-    background: var(--paper);
+  .reason summary {
+    height: var(--card-height); border: 1px solid var(--line);
+    padding: calc(13 * var(--unit)) calc(26 * var(--unit)) calc(13 * var(--unit)) calc(34 * var(--unit));
+    color: var(--ink); font-size: 3.55cqi; line-height: 1.08; letter-spacing: -.016em;
+    background: linear-gradient(115deg,#f0ece3,#ede9e0);
   }
   .reason summary:hover { box-shadow: inset 0 0 0 1px #bb0a0e88; }
   .reasons:has(.reason[open]) { margin-bottom: clamp(102px, 13cqi, 190px); }
@@ -123,8 +127,8 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .program h2 { top: 11%; left: 3.35%; }
   .program-grid { inset: 36% 3.7% 9.5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5.1% 1.8%; }
   .program-grid h3 { top: auto; padding: 1cqi 2cqi; font-weight: 600; }
-  .team h2 { top: 8.6%; left: 3.9%; }
-  .team-grid { inset: 43% 5.37% 11%; display: grid; gap: 4%; grid-template-columns: 1fr 1fr; }
+  .team h2 { top: calc(10 * var(--unit)); left: 3.35%; }
+  .team-grid { inset: calc(87 * var(--unit)) 5.37% auto; display: grid; gap: 4%; grid-template-columns: 1fr 1fr; }
   .ideas h2 { left: 32%; top: 28%; }
   .idea-action { left: 33%; top: 20%; width: 34%; height: 68%; }
 }
@@ -163,13 +167,15 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .track { gap: 12px; margin-top: 13px; }
   .reason { flex: 0 0 83%; }
   .reason summary, .program-grid article { border: 1px solid #939091; border-radius: 8px; min-height: 89px; padding: 15px; }
-  .reason summary { background: #fffaf2; font-size: 1.15rem; font-weight: 650; }
+  .reason summary { background: #fffaf2; font-size: clamp(1.1rem, 5vw, 1.65rem); line-height: 1.05; }
   .reason p { padding: 12px 5px 0; font-size: .95rem; }
   .program, .team { border-top: 1px solid var(--line); }
   .program-grid, .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 15px; gap: 11px; }
   .program-grid article { background: #fffaf288; }
   .scene h3 { font-size: clamp(.97rem, 4vw, 1.5rem); font-weight: 600; }
-  .team-grid p { color: var(--muted); margin-top: 5px; font-size: .85rem; }
+  .scene.team { padding-block: 29px 34px; }
+  .team-grid { margin-top: 23px; }
+  .team-grid p { color: var(--muted); margin-top: 9px; font-size: .85rem; }
   .team-grid article + article { border-left: 1px solid var(--line); padding-left: 12px; }
   .scene.ideas { display: grid; justify-content: center; padding: 18px 0 25px; border-top: 1px solid var(--line); }
   .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

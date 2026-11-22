@@ -35,7 +35,6 @@ const next = document.querySelector('[data-step="1"]');
 function updateArrows() {
   previous.disabled = track.scrollLeft <= 2;
   next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
-  track.classList.toggle("has-scrolled", track.scrollLeft > 2);
 }
 
 function moveCarousel(direction) {
