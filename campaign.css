@@ -6,6 +6,7 @@
   --red: #c90910;
   --line: #292723;
   --display: Impact, "Arial Narrow", "Franklin Gothic Demi Cond", "Arial Black", sans-serif;
+  --heading: "Segoe UI Variable", "Aptos", "Segoe UI", Arial, sans-serif;
   font-family: Arial, sans-serif;
   scroll-behavior: smooth;
 }
@@ -30,18 +31,17 @@ p, h1, h2, h3 { margin: 0; }
 .topbar nav { order: 2; display: flex; align-items: center; gap: clamp(14px, 3vw, 35px); }
 .topbar nav a + a { border-left: 1px solid var(--line); padding-left: clamp(14px, 3vw, 35px); }
 .wordmark, .topbar nav a { font: 900 clamp(.9rem, 2vw, 1.4rem)/1 var(--display); text-transform: uppercase; }
-.wordmark { font-size: clamp(1.1rem, 2.65vw, 2rem); }
+.wordmark { font-family: var(--heading); font-weight: 700; font-size: clamp(1.1rem, 2.65vw, 2rem); }
 .topbar a:hover { color: var(--red); }
-.hero { display: grid; position: relative; isolation: isolate; min-height: clamp(475px, 54vw, 735px); align-items: center; }
-.hero-copy { z-index: 2; position: relative; padding: clamp(25px, 4.4vw, 62px) 0 clamp(38px, 6.5vw, 92px); }
-.hero h1 { font: 900 clamp(4rem, 10.7vw, 9.5rem)/.86 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(14px, 2.5vw, 36px); min-height: clamp(475px, 54vw, 735px); align-items: center; }
+.hero-copy { container-type: inline-size; padding: clamp(25px, 4.4vw, 62px) 0 clamp(38px, 6.5vw, 92px); }
+.hero h1 { font: 700 clamp(2rem, 14.7cqi, 7rem)/.94 var(--heading); letter-spacing: -.046em; text-transform: uppercase; }
 .hero h1 span { display: block; }
-.hero h1 .accent { transform: skewX(-7deg); transform-origin: left bottom; }
-.candidate-name { font-weight: 850; font-size: clamp(1.85rem, 4.4vw, 4rem); letter-spacing: -.045em; line-height: 1; margin-top: 24px; }
+.candidate-name { font-weight: 700; font-size: clamp(1.85rem, 4.4vw, 4rem); letter-spacing: -.045em; line-height: 1; margin-top: 24px; }
 .candidate-role { font-size: clamp(1rem, 1.8vw, 1.3rem); margin: 10px 0 clamp(26px, 4vw, 46px); }
-.hero-visual { position: absolute; inset: 0 -4% 0 32%; overflow: hidden; pointer-events: none; }
-.hero-visual::before { content: ""; position: absolute; width: min(66%, 625px); aspect-ratio: 1; top: 2%; right: 11%; border-radius: 50%; background: #e30813; }
-.hero-visual img { position: absolute; right: -4%; bottom: -1%; width: 107%; height: auto; max-height: 98%; object-fit: contain; object-position: bottom right; filter: grayscale(1) contrast(1.05) brightness(1.14); }
+.hero-visual { position: relative; align-self: stretch; overflow: hidden; pointer-events: none; }
+.hero-visual::before { content: ""; position: absolute; width: 80%; aspect-ratio: 1; bottom: 13%; right: 7%; border-radius: 50%; background: #e30813; }
+.hero-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: grayscale(1) contrast(1.05) brightness(1.14); }
 .action {
   --shape: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
   display: inline-flex; position: relative; isolation: isolate; align-items: center; justify-content: center;
@@ -54,7 +54,7 @@ p, h1, h2, h3 { margin: 0; }
 .action[href]:hover::after { background: #a70008; }
 .election { display: flex; justify-content: space-around; align-items: center; gap: 24px; min-height: 104px; padding: 18px clamp(18px, 4vw, 42px); border: 1px solid var(--line); }
 .election-info { display: flex; align-items: center; gap: clamp(14px, 3vw, 36px); text-transform: uppercase; }
-.election-label, .election-date, .election-status { font: 900 clamp(1.15rem, 3vw, 2.2rem)/1 var(--display); }
+.election-label, .election-date, .election-status { font: 700 clamp(1.1rem, 2.7vw, 2rem)/1 var(--heading); }
 .election-date, .election-status { color: var(--red); white-space: nowrap; }
 .clock { display: flex; align-items: baseline; margin-left: 8px; padding-left: clamp(16px, 3vw, 45px); border-left: 1px solid var(--line); }
 .clock span { display: grid; position: relative; gap: 3px; min-width: 2ch; text-align: center; }
@@ -64,10 +64,10 @@ p, h1, h2, h3 { margin: 0; }
 .clock small { color: var(--muted); font-size: .72rem; }
 .section { border-top: 1px solid var(--line); padding: clamp(36px, 5.4vw, 74px) 0; scroll-margin-top: 12px; }
 #reasons { margin-top: clamp(28px, 4.5vw, 62px); }
-h2 { font: 900 clamp(1.8rem, 4.3vw, 3.8rem)/1.02 var(--display); letter-spacing: -.025em; text-transform: uppercase; }
+h2 { font: 650 clamp(1.65rem, 3.6vw, 3.2rem)/1.08 var(--heading); letter-spacing: -.025em; text-transform: uppercase; }
 .section > h2 { display: flex; align-items: center; gap: 22px; margin-bottom: clamp(21px, 3.5vw, 38px); }
 .section > h2::after { content: ""; flex: 1; min-width: 12px; height: 1px; background: var(--line); }
-h3, summary { font: 900 clamp(1.25rem, 2.8vw, 2.3rem)/1.12 var(--display); }
+h3, summary { font: 650 clamp(1.15rem, 2.35vw, 2.05rem)/1.17 var(--heading); }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 26px); }
 .panel { border: 1px solid var(--line); padding: clamp(20px, 3vw, 38px); }
 .initiative { min-height: clamp(147px, 17vw, 230px); background: #fbf9f450; }
@@ -93,23 +93,19 @@ h3, summary { font: 900 clamp(1.25rem, 2.8vw, 2.3rem)/1.12 var(--display); }
 .idea-controls .section-note { margin: 13px 0 0; font-size: .85rem; }
 @media (hover:hover) { .reason:not([open]):hover { min-height: clamp(160px, 17.5vw, 230px); border-color: var(--red); } }
 @media (max-width: 850px) {
-  .hero { min-height: 500px; align-items: start; }
-  .hero h1 { font-size: clamp(3.5rem, 12vw, 7.8rem); }
-  .hero-visual { inset: 13% -5% 0 29%; }
-  .hero-visual::before { top: auto; bottom: 14%; }
-  .candidate-role { max-width: min(40vw, 17rem); }
   .reason { flex-basis: 78%; }
+}
+@media (max-width: 720px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 8px; min-height: 0; }
+  .hero-copy { padding: 28px 0 0; }
+  .hero h1 { font-size: clamp(2rem, 14.7cqi, 5.25rem); }
+  .hero-visual { height: clamp(186px, 61vw, 385px); }
+  .hero-visual::before { width: min(65%, 340px); right: 17%; bottom: 9%; }
 }
 @media (max-width: 580px) {
   .topbar { min-height: 60px; gap: 12px; }
   .topbar nav { gap: 10px; }
   .topbar nav a + a { padding-left: 10px; }
-  .hero { min-height: 0; }
-  .hero-copy { padding: 25px 0 0; }
-  .hero h1 { font-size: clamp(2.75rem, 13.8vw, 5rem); }
-  .hero-visual { position: relative; inset: auto; height: clamp(198px, 62vw, 360px); margin: 6px -12px 0; }
-  .hero-visual::before { width: min(65%, 260px); right: 17%; bottom: 9%; }
-  .hero-visual img { width: 100%; height: 100%; max-height: none; right: 0; object-position: bottom center; }
   .candidate-name { margin-top: 15px; }
   .candidate-role { max-width: none; margin: 8px 0 17px; }
   .election { flex-wrap: wrap; justify-content: flex-start; gap: 15px; padding: 16px; }
@@ -123,4 +119,5 @@ h3, summary { font: 900 clamp(1.25rem, 2.8vw, 2.3rem)/1.12 var(--display); }
   .idea-controls { padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .ideas { grid-template-columns: 1fr; }
 }
+@media (max-width: 360px) { .program-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } .reason { transition: none; } }
