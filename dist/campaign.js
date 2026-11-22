@@ -20,7 +20,7 @@ function updateElection() {
   const hours = Math.floor(remaining / 3600) % 24;
   const minutes = Math.floor(remaining / 60) % 60;
   const seconds = remaining % 60;
-  const units = days ? [days, hours, minutes] : [hours, minutes, seconds];
+  const units = [days, hours, minutes, seconds];
   clockDigits.textContent = units.map((value) => String(value).padStart(2, "0")).join(" : ");
   clock.setAttribute("aria-label", `До выборов: ${days} дн., ${hours} ч., ${minutes} мин., ${seconds} сек.`);
 }
