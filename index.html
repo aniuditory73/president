@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Предвыборная кампания Артёма Петрова, 11А класс. Выборы президента школы — 3 декабря.">
+<meta name="theme-color" content="#f3f0e8">
+<title>Артём Петров — Выбери правильно</title>
+<link rel="stylesheet" href="campaign.css">
+<script src="campaign.js" defer></script>
+</head>
+<body>
+<div class="page">
+<header class="topbar">
+  <a class="wordmark" href="#top">Артём Петров</a>
+  <nav aria-label="Разделы сайта"><a href="#program">Программа</a><a href="#team">Команда</a></nav>
+</header>
+<main id="top">
+  <section class="hero" aria-labelledby="slogan">
+    <div class="hero-copy">
+      <h1 id="slogan"><span>Выбери</span><span class="accent">правильно</span></h1>
+      <p class="candidate-name">Артём Петров</p>
+      <p class="candidate-role">Кандидат в президенты школы, 11А класс</p>
+      <a class="action" href="#reasons"><span>Почему стоит выбрать меня</span></a>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img src="team-placeholder.webp" width="1300" height="867" alt="">
+    </div>
+  </section>
+  <section class="election" id="election" aria-label="Дата выборов">
+    <div class="election-info">
+      <p class="election-label">До выборов</p>
+      <p class="election-date"><time datetime="2026-12-03">3 декабря</time></p>
+    </div>
+    <div class="clock" id="clock" role="timer" aria-label="Отсчёт до выборов">
+      <span><b id="days">--</b><small>дней</small></span>
+      <span><b id="hours">--</b><small>часов</small></span>
+      <span><b id="minutes">--</b><small>минут</small></span>
+      <span><b id="seconds">--</b><small>секунд</small></span>
+    </div>
+    <p class="election-status" id="election-status" role="status" hidden></p>
+  </section>
+  <section class="section" id="reasons" aria-labelledby="reasons-title">
+    <h2 id="reasons-title">Почему стоит выбрать меня</h2>
+    <div class="carousel">
+      <button class="arrow" type="button" data-step="-1" aria-label="Предыдущая причина" aria-controls="reason-track">‹</button>
+      <div class="track" id="reason-track" tabindex="0" aria-label="Четыре причины выбрать меня">
+        <details class="panel reason"><summary>Твоя <span class="accent">идея</span> может стать делом</summary><p>Предложи, что хочешь изменить в школе. Мы с командой разберём идеи и расскажем, какие можем запустить.</p></details>
+        <details class="panel reason"><summary>От пятого до одиннадцатого</summary><p>Хочу, чтобы у ребят из разных классов были свои поводы участвовать в школьной жизни.</p></details>
+        <details class="panel reason"><summary>За мной — Совет директоров</summary><p>Нас трое. Разделим задачи, чтобы одновременно собирать предложения, готовить события и договариваться со школой.</p></details>
+        <details class="panel reason"><summary>Будет видно, что сделано</summary><p>Буду коротко рассказывать, что уже запустили, что в работе и где нужно согласование школы.</p></details>
+      </div>
+      <button class="arrow" type="button" data-step="1" aria-label="Следующая причина" aria-controls="reason-track">›</button>
+    </div>
+  </section>
+  <section class="section" id="program" aria-labelledby="program-title">
+    <h2 id="program-title">Предвыборная программа</h2>
+    <p class="section-note">Подробности появятся позже.</p>
+    <div class="grid program-grid">
+      <article class="panel initiative"><h3>Инициатива 1</h3></article>
+      <article class="panel initiative"><h3>Инициатива 2</h3></article>
+      <article class="panel initiative"><h3>Инициатива 3</h3></article>
+      <article class="panel initiative"><h3>Инициатива 4</h3></article>
+    </div>
+  </section>
+  <section class="section" id="team" aria-labelledby="team-title">
+    <h2 id="team-title">Совет директоров</h2>
+    <div class="grid">
+      <article class="panel member"><h3>Селезнёв Ярослав</h3><p>Цитата появится позже</p></article>
+      <article class="panel member"><h3>Саркисян Артём</h3><p>Цитата появится позже</p></article>
+    </div>
+  </section>
+  <section class="ideas" id="ideas" aria-labelledby="ideas-title">
+    <h2 id="ideas-title">Есть <span class="accent">идея</span> для школы?</h2>
+    <div class="idea-controls">
+      <a class="action" id="idea-link" target="_blank" rel="noopener noreferrer" aria-disabled="true" aria-describedby="idea-status"><span>Предложить идею</span></a>
+      <p class="section-note" id="idea-status">Форма скоро откроется.</p>
+    </div>
+  </section>
+</main>
+</div>
+</body>
+</html>
