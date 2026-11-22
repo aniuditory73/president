@@ -1,30 +1,28 @@
-// Paste the public respondent URL when the Google Form is ready.
 const googleFormUrl = "";
 const votingStarts = Date.parse("2026-12-03T00:00:00+03:00");
 const votingEnds = Date.parse("2026-12-04T00:00:00+03:00");
+const election = document.querySelector("#election");
 const clock = document.querySelector("#clock");
+const clockDigits = clock.querySelector("span");
 const electionStatus = document.querySelector("#election-status");
-const counters = ["days", "hours", "minutes", "seconds"].map((id) => document.getElementById(id));
 
 function updateElection() {
   const now = Date.now();
   if (now >= votingStarts) {
     clock.hidden = true;
-    document.querySelector(".election-label").hidden = true;
+    election.classList.add("after-countdown");
     electionStatus.textContent = now < votingEnds ? "ВЫБОРЫ СЕГОДНЯ!" : "ЖДЁМ РЕЗУЛЬТАТОВ";
     electionStatus.hidden = false;
     return;
   }
   const remaining = Math.ceil((votingStarts - now) / 1000);
-  const parts = [
-    Math.floor(remaining / 86400),
-    Math.floor(remaining / 3600) % 24,
-    Math.floor(remaining / 60) % 60,
-    remaining % 60,
-  ];
-  counters.forEach((counter, index) => {
-    counter.textContent = String(parts[index]).padStart(2, "0");
-  });
+  const days = Math.floor(remaining / 86400);
+  const hours = Math.floor(remaining / 3600) % 24;
+  const minutes = Math.floor(remaining / 60) % 60;
+  const seconds = remaining % 60;
+  const units = days ? [days, hours, minutes] : [hours, minutes, seconds];
+  clockDigits.textContent = units.map((value) => String(value).padStart(2, "0")).join(" : ");
+  clock.setAttribute("aria-label", `До выборов: ${days} дн., ${hours} ч., ${minutes} мин., ${seconds} сек.`);
 }
 
 updateElection();
@@ -37,6 +35,7 @@ const next = document.querySelector('[data-step="1"]');
 function updateArrows() {
   previous.disabled = track.scrollLeft <= 2;
   next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+  track.classList.toggle("has-scrolled", track.scrollLeft > 2);
 }
 
 function moveCarousel(direction) {
@@ -57,10 +56,16 @@ track.addEventListener("keydown", (event) => {
 new ResizeObserver(updateArrows).observe(track);
 updateArrows();
 
+const ideaLink = document.querySelector("#idea-link");
+const formStatus = document.querySelector("#form-status");
 if (googleFormUrl) {
-  const link = document.querySelector("#idea-link");
-  link.href = googleFormUrl;
-  link.removeAttribute("aria-disabled");
-  link.removeAttribute("aria-describedby");
-  document.querySelector("#idea-status").hidden = true;
+  ideaLink.href = googleFormUrl;
+  ideaLink.target = "_blank";
+  ideaLink.rel = "noopener noreferrer";
+} else {
+  ideaLink.setAttribute("aria-haspopup", "dialog");
+  ideaLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    formStatus.showModal();
+  });
 }
