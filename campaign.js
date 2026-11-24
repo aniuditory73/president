@@ -129,15 +129,31 @@ for (const link of document.querySelectorAll('a[draggable="false"]')) {
   }, true);
 }
 
-for (const title of document.querySelectorAll(".reason summary")) {
-  let start;
-  title.addEventListener("pointerdown", (event) => {
-    start = event.pointerType === "mouse" ? [event.clientX, event.clientY] : undefined;
-  });
-  title.addEventListener("click", (event) => {
-    if (event.detail && start && Math.hypot(event.clientX - start[0], event.clientY - start[1]) > 4) {
-      event.preventDefault();
+for (const card of document.querySelectorAll(".flip-card")) {
+  const title = card.querySelector(".reason-front");
+  const description = card.querySelector(".reason-back");
+  card.setAttribute("aria-label", title.innerText.replace(/\s+/g, " ").trim());
+
+  function showDescription(visible) {
+    card.setAttribute("aria-expanded", String(visible));
+    description.setAttribute("aria-hidden", String(!visible));
+    if (visible) {
+      card.setAttribute("aria-describedby", description.id);
+    } else {
+      card.removeAttribute("aria-describedby");
     }
-    start = undefined;
+  }
+
+  let pointerStart;
+  card.addEventListener("pointerdown", (event) => {
+    pointerStart = event.pointerType === "mouse" ? [event.clientX, event.clientY] : undefined;
+  });
+  card.addEventListener("click", (event) => {
+    if (event.detail && pointerStart &&
+        Math.hypot(event.clientX - pointerStart[0], event.clientY - pointerStart[1]) > 4) return;
+    showDescription(card.getAttribute("aria-expanded") !== "true");
+  });
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") showDescription(false);
   });
 }

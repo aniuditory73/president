@@ -44,19 +44,47 @@
         <button class="arrow art-text" type="button" data-step="1" aria-label="Следующая причина" aria-controls="reason-track">›</button>
       </div>
       <div class="track" id="reason-track" tabindex="0" aria-label="Четыре причины выбрать меня">
-        <details class="reason"><summary><span>Твоя <span class="accent">идея</span> может</span> <span>стать делом</span></summary><p>Предложи, что хочешь изменить в школе. Мы с командой разберём идеи и расскажем, какие можем запустить.</p></details>
-        <details class="reason"><summary><span>От пятого</span> <span>до одиннадцатого</span></summary><p>Хочу, чтобы у ребят из разных классов были свои поводы участвовать в школьной жизни.</p></details>
-        <details class="reason"><summary><span>За мной — Совет</span> <span>директоров</span></summary><p>Нас трое. Разделим задачи, чтобы одновременно собирать предложения, готовить события и договариваться со школой.</p></details>
-        <details class="reason"><summary><span>Будет видно,</span> <span>что сделано</span></summary><p>Буду коротко рассказывать, что уже запустили, что в работе и где нужно согласование школы.</p></details>
+        <button class="reason flip-card" type="button" aria-expanded="false" aria-controls="reason-copy-1"><span class="reason-rotor"><span class="reason-front"><span>Твоя <span class="accent">идея</span> может</span> <span>стать делом</span></span><span class="reason-back" id="reason-copy-1" aria-hidden="true">Предложи, что хочешь изменить в школе. Мы с командой разберём идеи и расскажем, какие можем запустить.</span></span></button>
+        <button class="reason flip-card" type="button" aria-expanded="false" aria-controls="reason-copy-2"><span class="reason-rotor"><span class="reason-front"><span>От пятого</span> <span>до одиннадцатого</span></span><span class="reason-back" id="reason-copy-2" aria-hidden="true">Хочу, чтобы у ребят из разных классов были свои поводы участвовать в школьной жизни.</span></span></button>
+        <button class="reason flip-card" type="button" aria-expanded="false" aria-controls="reason-copy-3"><span class="reason-rotor"><span class="reason-front"><span>За мной — Совет</span> <span>директоров</span></span><span class="reason-back" id="reason-copy-3" aria-hidden="true">Нас трое. Разделим задачи, чтобы одновременно собирать предложения, готовить события и договариваться со школой.</span></span></button>
+        <button class="reason flip-card" type="button" aria-expanded="false" aria-controls="reason-copy-4"><span class="reason-rotor"><span class="reason-front"><span>Будет видно,</span> <span>что сделано</span></span><span class="reason-back" id="reason-copy-4" aria-hidden="true">Буду коротко рассказывать, что уже запустили, что в работе и где нужно согласование школы.</span></span></button>
       </div>
     </section>
     <section class="program scene" id="program" aria-labelledby="program-title">
       <h2 class="art-text" id="program-title"><span class="art-line" style="--x:34;--y-text:31;--w:651;--h-text:49"><span class="art-fit">Предвыборная программа</span></span></h2>
       <div class="program-grid">
-        <article><h3 class="art-text"><span class="art-line" style="--x:183;--y-text:127;--w:180;--h-text:27"><span class="art-fit">Инициатива 1</span></span></h3></article>
-        <article><h3 class="art-text"><span class="art-line" style="--x:665;--y-text:127;--w:180;--h-text:27"><span class="art-fit">Инициатива 2</span></span></h3></article>
-        <article><h3 class="art-text"><span class="art-line" style="--x:183;--y-text:210;--w:180;--h-text:27"><span class="art-fit">Инициатива 3</span></span></h3></article>
-        <article><h3 class="art-text"><span class="art-line" style="--x:665;--y-text:210;--w:180;--h-text:27"><span class="art-fit">Инициатива 4</span></span></h3></article>
+        <button class="initiative-card flip-card" type="button" aria-expanded="false" aria-controls="initiative-copy-1">
+          <span class="reason-rotor">
+            <span class="reason-front">Идея месяца</span>
+            <span class="reason-back" id="initiative-copy-1" aria-hidden="true">
+              <span><strong>Что получат ребята</strong> Ученики предлагают, что изменить, и голосуют за один из вариантов. Например, за шахматный стол на перемене, обмен книгами или выставку школьных фотографий.</span> <span><strong>Как запустить</strong> Мы с помощниками отберём три идеи, которые реально выполнить, согласуем их с куратором самоуправления и вынесем на голосование. На сайте покажем, что уже сделали.</span>
+            </span>
+          </span>
+        </button>
+        <button class="initiative-card flip-card" type="button" aria-expanded="false" aria-controls="initiative-copy-2">
+          <span class="reason-rotor">
+            <span class="reason-front">«Что я хотел бы знать в пятом классе»</span>
+            <span class="reason-back" id="initiative-copy-2" aria-hidden="true">
+              <span><strong>Что получат ребята</strong> Пятиклассники получат короткий гид по школе от старших. Где узнать про кружки, как попасть в школьную команду и к кому идти со своей идеей.</span> <span><strong>Как запустить</strong> Соберём реальные вопросы у одного пятого класса и сделаем одну страницу на сайте. Сведения о школе проверим с классным руководителем.</span>
+            </span>
+          </span>
+        </button>
+        <button class="initiative-card flip-card" type="button" aria-expanded="false" aria-controls="initiative-copy-3">
+          <span class="reason-rotor">
+            <span class="reason-front">«После нас»</span>
+            <span class="reason-back" id="initiative-copy-3" aria-hidden="true">
+              <span><strong>Что получат ребята</strong> Девятые и одиннадцатые классы оставят младшим подборки материалов, советы по выбору профиля и короткие ответы на вопросы про ОГЭ и ЕГЭ. Восьмые и десятые могут заранее прислать свои вопросы.</span> <span><strong>Как запустить</strong> Начнём с одной подборки и пяти вопросов. Материалы можно собрать через форму и опубликовать на сайте без имён.</span>
+            </span>
+          </span>
+        </button>
+        <button class="initiative-card flip-card" type="button" aria-expanded="false" aria-controls="initiative-copy-4">
+          <span class="reason-rotor">
+            <span class="reason-front">Тихая перемена</span>
+            <span class="reason-back" id="initiative-copy-4" aria-hidden="true">
+              <span><strong>Что получат ребята</strong> У тех, кто устал от шума, появится место, где можно спокойно почитать, порисовать или посидеть.</span>
+            </span>
+          </span>
+        </button>
       </div>
     </section>
     <section class="team scene" id="team" aria-labelledby="team-title">
