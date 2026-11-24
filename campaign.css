@@ -66,6 +66,7 @@ p, h1, h2, h3 { margin: 0; }
 .arrow { cursor: pointer; border: 0; background: none; }
 .arrow:disabled { cursor: default; }
 .mobile-portrait { display: none; }
+.team-quote { margin: 0; color: var(--ink); font-style: italic; line-height: 1.4; overflow-wrap: break-word; }
 dialog { color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; width: min(90%, 440px); padding: 24px; }
 dialog::backdrop { background: #121315c4; }
 dialog h2 { font-size: 1.5rem; }
@@ -107,7 +108,7 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
     background: var(--art) 0 calc(-1013 * var(--unit)) / 100% auto no-repeat;
     mask-image: linear-gradient(#000 85%, transparent);
   }
-  .team { --y: 1300; --h: 220; background: linear-gradient(110deg, #f0ece3, #ece8df); }
+  .team { --y: 1300; --h: 245; background: linear-gradient(110deg, #f0ece3, #ece8df); }
   .team::before, .team::after {
     content: ""; position: absolute; inset-inline: 0; pointer-events: none;
     background-image: var(--art); background-repeat: no-repeat; background-size: 100cqi auto;
@@ -117,8 +118,8 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
     mask-image: linear-gradient(#000 92%, transparent);
   }
   .team::after {
-    top: calc(87 * var(--unit)); height: calc(84 * var(--unit)); background-position: 0 calc(-1359 * var(--unit));
-    mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+    top: calc(87 * var(--unit)); height: calc(44 * var(--unit)); background-position: 0 calc(-1359 * var(--unit));
+    mask-image: linear-gradient(transparent, #000 12%, #000 92%, transparent);
   }
   .ideas { --y: 1450; --h: 86; }
   .scene .art-text, .scene .art-text .accent { color: transparent; }
@@ -135,6 +136,13 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .brand .art-line, .masthead nav .art-line, .hero-action .art-line, .idea-action .art-line { cursor: inherit; }
   .brand .art-line, .masthead nav .art-line, .reasons .art-line, .program .art-line, .election .art-line, .team h2 .art-line, .team h3 .art-line { text-transform: uppercase; }
   .team-grid { display: contents; }
+  .team-grid::after {
+    content: ""; position: absolute; left: 49.95%; top: calc(103 * var(--unit));
+    height: calc(108 * var(--unit)); width: 1px; background: var(--line); pointer-events: none;
+  }
+  .team-quote { position: absolute; top: calc(136 * var(--unit)); left: 5.37%; width: 42%; font-size: 1.8cqi; }
+  .team-grid article + article .team-quote { left: 54.4%; }
+
   .after-countdown .election-info { display: none; }
   .brand { left: 4.4%; top: 24%; width: 22%; height: 69%; }
   .masthead nav a { top: 18%; height: 57%; }
@@ -240,7 +248,7 @@ dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background:
   .scene h3 { font-size: clamp(.97rem, 4vw, 1.5rem); font-weight: 600; }
   .scene.team { padding-block: 29px 34px; }
   .team-grid { margin-top: 23px; }
-  .team-grid p { color: var(--muted); margin-top: 9px; font-size: .85rem; }
+  .team-quote { margin-top: 9px; font-size: .9rem; }
   .team-grid article + article { border-left: 1px solid var(--line); padding-left: 12px; }
   .scene.ideas { display: grid; justify-content: center; padding: 18px 0 25px; border-top: 1px solid var(--line); }
   .ideas h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); user-select: none; }
