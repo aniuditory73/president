@@ -1,4 +1,3 @@
-const googleFormUrl = "";
 const votingStarts = Date.parse("2026-12-03T00:00:00+03:00");
 const votingEnds = Date.parse("2026-12-04T00:00:00+03:00");
 const election = document.querySelector("#election");
@@ -54,21 +53,6 @@ track.addEventListener("keydown", (event) => {
 });
 new ResizeObserver(updateArrows).observe(track);
 updateArrows();
-
-const ideaLink = document.querySelector("#idea-link");
-const formStatus = document.querySelector("#form-status");
-if (googleFormUrl) {
-  ideaLink.href = googleFormUrl;
-  ideaLink.target = "_blank";
-  ideaLink.rel = "noopener noreferrer";
-} else {
-  ideaLink.setAttribute("aria-haspopup", "dialog");
-  ideaLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    formStatus.showModal();
-  });
-}
-
 
 // Match the selectable DOM text to the lettering in the desktop artwork.
 const desktopArtwork = matchMedia("(min-width: 761px)");

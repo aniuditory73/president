@@ -68,12 +68,7 @@ p, h1, h2, h3 { margin: 0; }
 .mobile-portrait { display: none; }
 .team-intro { margin: 14px 0 0; max-width: 75ch; line-height: 1.55; }
 .team-quote { margin: 0; color: var(--ink); font-style: italic; line-height: 1.4; overflow-wrap: break-word; }
-dialog { color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; width: min(90%, 440px); padding: 24px; }
-dialog::backdrop { background: #121315c4; }
-dialog h2 { font-size: 1.5rem; }
-dialog p { margin: 14px 0 20px; }
 .action { display: inline-flex; justify-content: center; align-items: center; border: 0; cursor: pointer; }
-dialog .action { padding: 9px 17px; border-radius: 6px; color: #fff; background: var(--button); }
 .program-grid {
   --card-height: clamp(156px, 19cqi, 250px);
   --card-padding: clamp(13px, 2.1cqi, 30px);
